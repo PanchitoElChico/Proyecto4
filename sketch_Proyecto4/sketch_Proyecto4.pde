@@ -9,7 +9,6 @@ AudioPlayer son;
 
 Capture video;
 OpenCV opencv;
-
 Quad c;
 
 int le = 6,u, y;
@@ -34,7 +33,22 @@ void setup() {
 }
 
 void draw() {
-  scale(2);
+ 
+  
+  c.display();
+}
+
+class Quad{
+ color linea,back;
+ R pto1,pto2;
+ 
+ Quad(color linea_,color back_){
+  linea = linea_; back = back_;
+  pto1 = new R(4);
+  pto2 = new R(4);
+ }
+ void display(){
+    scale(2);
   opencv.loadImage(video);
   sec += 0.02;
   for (int i = 0; i < video.width; i+=le) {
@@ -59,31 +73,19 @@ void draw() {
     }
   }
   
-  c.display();
-}
-
-class Quad{
- color linea,back;
- 
- R pto1,pto2;
- 
- Quad(color linea_,color back_){
-  linea = linea_; back = back_;
-  pto1 = new R(4);
-  pto2 = new R(4);
- }
- void display(){
    fill(back,50);
    Rectangle[] faces = opencv.detect();
    
-   for (int i = 0; i < faces.length; i++) {
+   /*for (int i = 0; i < faces.length; i++) {
     rectMode(CORNER);    
     pto1.playing(faces[i].x+(faces[i].width/2), faces[i].y+(faces[i].height/3), faces[i].width/2, faces[i].height/6); 
     pto2.playing(faces[i].x, faces[i].y+(faces[i].height/3), faces[i].width/2, faces[i].height/6);
     
   }
     println("Presiona 1, 2, 3 o 4 para cambiar de efecto"); 
- }
+ 
+}*/
+}
 }
 
 class R{
